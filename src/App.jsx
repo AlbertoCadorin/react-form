@@ -17,7 +17,12 @@ function App() {
     event.preventDefault();
     setArticleTitle([...articleTitle, newArticleTitle])
   }
-
+  const removeArticle = i => {
+    const newArticleTitle = articleTitle.filter((article, index) => {
+      return index !== i
+    })
+    setArticleTitle(newArticleTitle)
+  };
 
   return (
     <>
@@ -26,7 +31,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {articleTitle.map((article, i) => <li key={i}>{article}</li>)}
+          {articleTitle.map((article, i) => <li key={i}>{article}<button onClick={() => removeArticle(i)}>Elimina</button></li>)}
         </ul>
 
         <form onSubmit={addNewArticleTitle}>
